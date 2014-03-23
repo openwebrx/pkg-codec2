@@ -1,0 +1,30 @@
+#!/usr/bin/make -f
+DEB_BUILD_OPTIONS=nostrip
+CFLAGS=-Wall -g
+CXXFLAGS=-Wall -g
+VERBOSE=1
+DEB_DEBIAN_DIR=$(dir $(firstword $(MAKEFILE_LIST)))
+REV=$(shell dpkg-parsechangelog -l$(DEB_DEBIAN_DIR)/changelog \
+              | sed -rne 's,^Version: .*[+~]svn([0-9]+).*,\1,p')
+VER=$(shell dpkg-parsechangelog -l$(DEB_DEBIAN_DIR)/changelog \
+              | sed -rne 's,^Version: ([^-]+).*,\1,p')
+SVNREV=$(shell echo $(VER) | sed -rne 's,[0-9]+\.[0-9]+\.[0-9]+\.([0-9]+),\1,p')
+
+%:
+	dh $@ --builddirectory=Build --buildsystem=cmake
+
+override_dh_auto_configure:
+	dh_auto_configure --builddirectory=Build --buildsystem=cmake
+
+get-orig-source: # remove binary data and cruft
+	rm -rf codec2-$(VER)
+	svn -q export -r $(SVNREV) https://svn.code.sf.net/p/freetel/code/codec2-dev/ \
+          codec2-$(VER)
+	rm -rf codec2-$(VER).orig/raw # Audio data
+	rm -rf codec2-$(VER).orig/stm32 # Maybe non-dfsg?
+	rm -rf codec2-$(VER).orig/wav # Audio data
+	rm -rf codec2-$(VER).orig/win32 # here be .dll files
+	GZIP=--best tar -cz --owner root --group root --mode a+rX \
+         -f codec2_$(VER).orig.tar.gz \
+         codec2-$(VER)
+	rm -r codec2-$(VER)

@@ -1,0 +1,32 @@
+From 865addd0ec6bd3641c1d3eefe07ce5ae7ad757f7 Mon Sep 17 00:00:00 2001
+From: hobbes1069 <hobbes1069@01035d8c-6547-0410-b346-abe4f91aad63>
+Date: Mon, 16 Dec 2013 20:41:56 +0000
+Subject: [PATCH 1/2] Add better error message when an in-source build is
+ attempted. Add workaround for bootstrap build of
+ wxWidgets due to cmake bug. Update minimum wxWidgets
+ version to 3.0.0.
+
+git-svn-id: https://svn.code.sf.net/p/freetel/code/codec2-dev@1345 01035d8c-6547-0410-b346-abe4f91aad63
+---
+ CMakeLists.txt |    5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index a8ad366..e9ef226 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -15,6 +15,11 @@ cmake_minimum_required(VERSION 2.8)
+ #
+ set(CMAKE_DISABLE_SOURCE_CHANGES ON)
+ set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
++if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
++  message(FATAL_ERROR "In-source builds in ${CMAKE_BINARY_DIR} are not "
++   "allowed, please remove ./CMakeCache.txt and ./CMakeFiles/, create a "
++   "separate build directory and run cmake from there.")
++endif("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
+ 
+ project(codec2)
+ 
+-- 
+1.7.10.4
+

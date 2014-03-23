@@ -1,0 +1,43 @@
+Source: codec2
+Section: sound
+Priority: optional
+Maintainer: A. Maitland Bottoms <bottoms@debian.org>
+Build-Depends: debhelper (>= 9), cmake
+Standards-Version: 3.9.3
+Homepage: http://www.speex.org/
+Vcs-Git: git://git.debian.org/users/bottoms/codec2.git
+Vcs-Browser: http://git.debian.org/?p=users/bottoms/codec2.git;a=summary
+
+Package: codec2
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: octave
+Description: command line tools for handling Codec2 data
+ Codec2 is an audio codec especially designed for compressing voice at
+ very low bit-rates for applications such as digital voice radio.
+ .
+ This package contains the encoder and decoder command-line applications,
+ sample data and supporting examples.
+
+Package: libcodec2-0.2
+Architecture: any
+Pre-Depends: multiarch-support
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Multi-Arch: same
+Description: Codec2 runtime library
+ Codec2 is an audio codec especially designed for compressing voice at
+ very low bit-rates for applications such as digital voice radio.
+ .
+ This package contains the codec2 runtime library.
+
+Package: libcodec2-dev
+Architecture: any
+Section: libdevel
+Pre-Depends: multiarch-support
+Depends: libcodec2-0.2 (= ${binary:Version}), ${misc:Depends}
+Suggests: pkg-config
+Description: Codec2 library development files
+ Codec2 is an audio codec especially designed for compressing voice at
+ very low bit-rates for applications such as digital voice radio.
+ .
+ This package provides the codec2 library headers and development files.

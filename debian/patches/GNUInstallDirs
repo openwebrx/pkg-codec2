@@ -1,0 +1,26 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -21,8 +21,8 @@
+    "separate build directory and run cmake from there.")
+ endif("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
+ 
+-project(codec2)
+-
++project(codec2 C)
++include(GNUInstallDirs)
+ 
+ #
+ # Set project version information. This should probably be done via external
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -251,7 +251,7 @@
+     insert_errors
+     fec_enc
+     fec_dec
+-    LIBRARY DESTINATION lib${LIB_SUFFIX}
+-    ARCHIVE DESTINATION lib${LIB_SUFFIX}
+-    RUNTIME DESTINATION bin
++    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
++    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+ )

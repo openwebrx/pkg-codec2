@@ -1,0 +1,12 @@
+codec2 (0.2.0.1319-1) UNRELEASED; urgency=low
+
+  * New upstream commit
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sat, 15 Jun 2013 17:11:28 -0500
+
+codec2 (0.0.0.389-1) unstable; urgency=low
+
+  * Package from the codec2-dev subversion repository
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Tue, 01 May 2012 12:05:20 -0400
+

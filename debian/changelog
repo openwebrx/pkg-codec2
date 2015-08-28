@@ -1,3 +1,11 @@
+codec2 (0.4-1) unstable; urgency=low
+
+  * New upstream release 0.4
+  * new 700B mode used in freedv 1.0 release
+  * add watch file
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Thu, 27 Aug 2015 22:17:41 -0400
+
 codec2 (0.3.0.2080-1) unstable; urgency=low
 
   * Match new Fedora packaging

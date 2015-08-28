@@ -2,6 +2,7 @@ Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: codec2
 Upstream-Contact: http://rowetel.com/codec2.html
 Source: https://svn.code.sf.net/p/freetel/code/codec2/
+ http://files.freedv.org/codec2/codec2-0.4.tar.gz
 Copyright: Copyright 2007-2015 David Rowe
 License: LGPL-2.1
 
@@ -10,7 +11,7 @@ Copyright: Copyright 2007-2015 David Rowe
 License: LGPL-2.1
 
 Files: asterisk/* asterisk-11/* cmake/* fltk/* octave/* portaudio/* raw/*
- script/* src/* unittest/* voicing/* wav/*
+ script/* src/* stm32/* unittest/* voicing/* wav/*
 Copyright: Copyright 2007-2015 David Rowe
 License: LGPL-2.1
 
@@ -27,6 +28,10 @@ License: LGPL-2.1
 Files: unittest/vq_train_jvm.c unittest/ge_train.c
 Copyright: (C) 2012 Jean-Marc Valin 
 License: LGPL-2
+
+Files: stm32/inc/iir_duc.h stm32/src/iir_duc.c
+Copyright: 2015 Brady O'Brien
+License: LGPL-2.1
 
 Files: octave/spec.m
 Copyright: (c) John-Marc Valin 2012

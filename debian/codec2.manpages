@@ -1,0 +1,5 @@
+debian/c2dec.1
+debian/c2demo.1
+debian/c2enc.1
+debian/c2sim.1
+debian/insert_errors.1

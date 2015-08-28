@@ -1,9 +1,24 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: codec2-dev
+Upstream-Name: codec2
 Upstream-Contact: http://rowetel.com/codec2.html
-Source: https://freetel.svn.sourceforge.net/svnroot/freetel/codec2-dev
-Copyright: Copyright 2007-2011 David Rowe
+Source: https://svn.code.sf.net/p/freetel/code/codec2/
+Copyright: Copyright 2007-2015 David Rowe
 License: LGPL-2.1
+
+Files: AUTHORS ChangeLog CMakeLists.txt INSTALL NEWS README README_fdmdv.txt
+Copyright: Copyright 2007-2015 David Rowe
+License: LGPL-2.1
+
+Files: asterisk/* asterisk-11/* cmake/* fltk/* octave/* portaudio/* raw/*
+ script/* src/* unittest/* voicing/* wav/*
+Copyright: Copyright 2007-2015 David Rowe
+License: LGPL-2.1
+
+Files: COPYING
+Copyright: 1989, 1991 Free Software Foundation, Inc.
+License: COPYING
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
 
 Files: src/pack.c
 Copyright: (C) 2010 Perens LLC <bruce@perens.com>
@@ -22,7 +37,7 @@ Copyright: Copyright (c) 2003-2010, Mark Borgerding
 License: KISSFFTBSD
 
 Files: debian/*
-Copyright: © 2012 A. Maitland Bottoms <bottoms@debian.org>
+Copyright: © 2012-2015 A. Maitland Bottoms <bottoms@debian.org>
 License: LGPL-2.1
 
 License: LGPL-2

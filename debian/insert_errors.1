@@ -1,0 +1,15 @@
+.TH INSERT_ERRORS "1" "Feb 2013" "INSERT_ERRORS" "User Commands"
+.SH NAME
+insert_errors \- codec2 testing framework
+.SH DESCRIPTION
+Codec2 test and evaluation program
+.SH OPTIONS
+None
+.PP
+Inserts errors into a Codec 2 bit stream using error files.  The
+error files have one 16 bit short per bit, the short is set to 1 if
+there is an error, or zero otherwise.  The Codec 2 bit stream files
+are in packed format, i.e. c2enc/c2dec format.
+.SH "SEE ALSO"
+.PP
+c2dec(1) c2demo(1) c2enc(1) c2sim(1) fdmdv_demod(1) fdmdv_interleave(1) fdmdv_mod(1) fdmdv_put_test_bits(1) fec_dec(1) fec_enc(1) insert_errors(1)

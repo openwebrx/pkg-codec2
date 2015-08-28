@@ -1,0 +1,21 @@
+.TH C2DEMO "1" "Nov 2010" "C2DEMO" "User Commands"
+.SH NAME
+c2demo \- codec2 testing framework
+.SH DESCRIPTION
+Codec2 test and evaluation program
+.SH USAGE
+c2demo InputRawSpeechFile OutputRawSpeechFile
+.SH OPTIONS
+None
+.PP
+Encodes and decodes a file of raw speech samples using Codec 2.
+Demonstrates use of Codec 2 function API.
+.PP
+Note to convert a wave file to raw and vice-versa:
+.PP
+$ sox file.wav -r 8000 -s -2 file.raw
+.PP
+$ sox -r 8000 -s -2 file.raw file.wav
+.SH "SEE ALSO"
+.PP
+c2dec(1) c2enc(1) c2sim(1) fdmdv_demod(1) fdmdv_interleave(1) fdmdv_mod(1) fdmdv_put_test_bits(1) fec_dec(1) fec_enc(1) insert_errors(1)

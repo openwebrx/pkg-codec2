@@ -1,14 +1,7 @@
 #!/usr/bin/make -f
-#VERBOSE=1
-#DEB_DEBIAN_DIR=$(dir $(firstword $(MAKEFILE_LIST)))
-#REV=$(shell dpkg-parsechangelog -l$(DEB_DEBIAN_DIR)/changelog \
-#              | sed -rne 's,^Version: .*[+~]svn([0-9]+).*,\1,p')
-#VER=$(shell dpkg-parsechangelog -l$(DEB_DEBIAN_DIR)/changelog \
-#              | sed -rne 's,^Version: ([^-]+).*,\1,p')
-#SVNREV=$(shell echo $(VER) | sed -rne 's,[0-9]+\.[0-9]+\.[0-9]+\.([0-9]+),\1,p')
 
 %:
-	dh $@ --builddirectory=Build --buildsystem=cmake
+	dh $@ --builddirectory=Build --buildsystem=cmake --with acc
 
 override_dh_auto_configure:
 	dh_auto_configure --builddirectory=Build --buildsystem=cmake -- \

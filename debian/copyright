@@ -26,7 +26,7 @@ Copyright: (C) 2010 Perens LLC <bruce@perens.com>
 License: LGPL-2.1
 
 Files: unittest/vq_train_jvm.c unittest/ge_train.c
-Copyright: (C) 2012 Jean-Marc Valin 
+Copyright: (C) 2012 Jean-Marc Valin
 License: LGPL-2
 
 Files: stm32/inc/iir_duc.h stm32/src/iir_duc.c
@@ -56,7 +56,7 @@ License: LGPL-2
   License for more details.
  .
  On Debian systems, the complete text of the GNU Lesser General Public
- License (LGPL) version 2 can be found in the file 
+ License (LGPL) version 2 can be found in the file
  '/usr/share/common-licenses/LGPL-2'.
 
 
@@ -72,7 +72,7 @@ License: LGPL-2.1
     Lesser General Public License for more details.
  .
     On Debian systems, the complete text of the GNU Lesser General Public
-    License (LGPL) version 2.1 can be found in the file 
+    License (LGPL) version 2.1 can be found in the file
     '/usr/share/common-licenses/LGPL-2.1'.
 
 

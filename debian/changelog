@@ -1,3 +1,10 @@
+codec2 (0.4-2) unstable; urgency=low
+
+  * install all header files
+  * use dh_acc and abi-compliance-checker
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Fri, 04 Sep 2015 22:21:32 -0400
+
 codec2 (0.4-1) unstable; urgency=low
 
   * New upstream release 0.4

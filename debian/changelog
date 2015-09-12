@@ -1,3 +1,9 @@
+codec2 (0.4-3) unstable; urgency=low
+
+  * drop dh_acc to get reproducible builds
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Fri, 11 Sep 2015 22:19:50 -0400
+
 codec2 (0.4-2) unstable; urgency=low
 
   * install all header files

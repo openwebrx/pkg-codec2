@@ -2,7 +2,7 @@ Source: codec2
 Section: sound
 Priority: optional
 Maintainer: A. Maitland Bottoms <bottoms@debian.org>
-Build-Depends: cmake, debhelper (>= 9), dh-acc, libspeexdsp-dev
+Build-Depends: cmake, debhelper (>= 9), libspeexdsp-dev
 Standards-Version: 3.9.6
 Homepage: http://www.rowetel.com/blog/?page_id=452
 Vcs-Git: git://anonscm.debian.org/users/bottoms/pkg-codec2.git

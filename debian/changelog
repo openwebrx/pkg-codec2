@@ -1,3 +1,9 @@
+codec2 (0.4.1-1) unstable; urgency=medium
+
+  * New upstream release - txt bit fix
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Mon, 14 Sep 2015 18:14:44 -0400
+
 codec2 (0.4-3) unstable; urgency=low
 
   * drop dh_acc to get reproducible builds

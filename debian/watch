@@ -1,2 +1,2 @@
 version=3
- https://files.freedv.org/codec2/ codec2-(.+)\.tar\.gz
+ https://files.freedv.org/codec2/ codec2-(.+)\.tar\.xz

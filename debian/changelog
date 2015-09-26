@@ -1,8 +1,17 @@
-codec2 (0.4.1-1) unstable; urgency=medium
+codec2 (0.5-1) unstable; urgency=medium
 
-  * New upstream release - txt bit fix
+  * New upstream release
+  * freedv api update - 14 new functions - compatible API
+  * patched to keep ABI compatible (moved new vars to the end of the structure)
+  * updated watch file since upstream is using xz compression
 
- -- A. Maitland Bottoms <bottoms@debian.org>  Mon, 14 Sep 2015 18:14:44 -0400
+ -- A. Maitland Bottoms <bottoms@debian.org>  Thu, 24 Sep 2015 20:25:44 -0400
+
+codec2 (0.4-3~08) stable; urgency=low
+
+  * jessie version
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sat, 12 Sep 2015 11:36:01 -0400
 
 codec2 (0.4-3) unstable; urgency=low
 

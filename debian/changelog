@@ -1,3 +1,9 @@
+codec2 (0.5-2) unstable; urgency=medium
+
+  * Lintian fixes
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Thu, 19 Nov 2015 20:29:49 -0500
+
 codec2 (0.5-1) unstable; urgency=medium
 
   * New upstream release

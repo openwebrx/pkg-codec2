@@ -29,7 +29,7 @@ Description: command line tools for handling Codec2 data
 
 Package: libcodec2-0.4
 Architecture: any
-Pre-Depends: multiarch-support
+Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Multi-Arch: same
 Description: Codec2 runtime library
@@ -43,7 +43,7 @@ Description: Codec2 runtime library
 Package: libcodec2-dev
 Architecture: any
 Section: libdevel
-Pre-Depends: multiarch-support
+Pre-Depends: ${misc:Pre-Depends}
 Depends: libcodec2-0.4 (= ${binary:Version}), ${misc:Depends}
 Suggests: pkg-config
 Description: Codec2 library development files

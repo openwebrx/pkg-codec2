@@ -1,3 +1,9 @@
+codec2 (0.5-3) unstable; urgency=medium
+
+  * library package in libs section (Closes: #809273)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Tue, 05 Jan 2016 18:09:34 -0500
+
 codec2 (0.5-2) unstable; urgency=medium
 
   * Lintian fixes

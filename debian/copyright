@@ -10,8 +10,8 @@ Files: AUTHORS ChangeLog CMakeLists.txt INSTALL NEWS README README_fdmdv.txt
 Copyright: Copyright 2007-2015 David Rowe
 License: LGPL-2.1
 
-Files: asterisk/* asterisk-11/* cmake/* fltk/* octave/* portaudio/* raw/*
- script/* src/* stm32/* unittest/* voicing/* wav/*
+Files: asterisk/* asterisk-11/* cmake/* octave/* raw/*
+ script/* src/* stm32/* unittest/* wav/*
 Copyright: Copyright 2007-2015 David Rowe
 License: LGPL-2.1
 

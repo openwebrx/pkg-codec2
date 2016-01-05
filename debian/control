@@ -21,13 +21,14 @@ Package: codec2-examples
 Architecture: all
 Depends: ${misc:Depends}
 Suggests: octave
-Description: command line tools for handling Codec2 data
+Description: Codec2 sample data and examples
  Codec2 is an audio codec especially designed for compressing voice at
  very low bit-rates for applications such as digital voice radio.
  .
  This package contains sample data and supporting examples.
 
 Package: libcodec2-0.4
+Section: libs
 Architecture: any
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}

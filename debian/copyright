@@ -2,8 +2,8 @@ Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: codec2
 Upstream-Contact: http://rowetel.com/codec2.html
 Source: https://svn.code.sf.net/p/freetel/code/codec2/
- http://files.freedv.org/codec2/codec2-0.4.tar.gz
-Copyright: Copyright 2007-2015 David Rowe
+ http://files.freedv.org/codec2/codec2-0.5.1.tar.xz
+Copyright: Copyright 2007-2016 David Rowe
 License: LGPL-2.1
 
 Files: AUTHORS ChangeLog CMakeLists.txt INSTALL NEWS README README_fdmdv.txt
@@ -20,6 +20,10 @@ Copyright: 1989, 1991 Free Software Foundation, Inc.
 License: COPYING
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
+
+Files: src/golay23.c
+Copyright: 2016 Tomas Härdin & David Rowe
+License: LGPL-2.1
 
 Files: src/pack.c
 Copyright: (C) 2010 Perens LLC <bruce@perens.com>

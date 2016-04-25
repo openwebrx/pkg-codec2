@@ -7,7 +7,7 @@
 -set(CODEC2_VERSION_MINOR 5)
 +set(CODEC2_VERSION_MINOR 4)
  # Set to patch level if needed, otherwise leave FALSE.
- set(CODEC2_VERSION_PATCH FALSE)
+ set(CODEC2_VERSION_PATCH 1)
  set(CODEC2_VERSION "${CODEC2_VERSION_MAJOR}.${CODEC2_VERSION_MINOR}")
 --- a/src/codec2_fm.h
 +++ b/src/codec2_fm.h

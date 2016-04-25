@@ -1,3 +1,10 @@
+codec2 (0.5.1-1) unstable; urgency=medium
+
+  * New upstream release (Closes: #821209)
+    rewritten src/golay23.c (Thanks Tomas)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Mon, 25 Apr 2016 09:54:12 -0400
+
 codec2 (0.5-3) unstable; urgency=medium
 
   * library package in libs section (Closes: #809273)

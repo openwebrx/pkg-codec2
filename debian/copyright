@@ -11,8 +11,9 @@ Copyright: Copyright 2007-2015 David Rowe
 License: LGPL-2.1
 
 Files: asterisk/* asterisk-11/* cmake/* octave/* raw/*
- script/* src/* stm32/* unittest/* wav/*
-Copyright: Copyright 2007-2015 David Rowe
+ script/* src/* stm32/* unittest/* wav/* README_fsk.txt
+ codec2.pc.in notes_and_todo_tdma
+Copyright: Copyright 2007-2017 David Rowe
 License: LGPL-2.1
 
 Files: COPYING

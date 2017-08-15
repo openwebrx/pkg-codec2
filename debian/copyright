@@ -6,13 +6,13 @@ Source: https://svn.code.sf.net/p/freetel/code/codec2/
 Copyright: Copyright 2007-2016 David Rowe
 License: LGPL-2.1
 
-Files: AUTHORS ChangeLog CMakeLists.txt INSTALL NEWS README README_fdmdv.txt
-Copyright: Copyright 2007-2015 David Rowe
+Files: CMakeLists.txt INSTALL README README_fdmdv.txt
+Copyright: Copyright 2007-2017 David Rowe
 License: LGPL-2.1
 
 Files: asterisk/* asterisk-11/* cmake/* octave/* raw/*
  script/* src/* stm32/* unittest/* wav/* README_fsk.txt
- codec2.pc.in notes_and_todo_tdma
+ codec2.pc.in
 Copyright: Copyright 2007-2017 David Rowe
 License: LGPL-2.1
 

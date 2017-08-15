@@ -1,3 +1,21 @@
+codec2 (0.7-1) unstable; urgency=medium
+
+  * New upstream release
+  - API changes:
+  Added Symbols  5
+   codec2_cohpsk.h
+    cohpsk_get_rx_bits_lower ( struct COHPSK* coh )
+    cohpsk_get_rx_bits_upper ( struct COHPSK* coh )
+    cohpsk_set_carrier_ampl ( struct COHPSK* coh, int c, float ampl )
+   freedv_api.h
+    freedv_set_carrier_ampl ( struct freedv* freedv, int c, float ampl )
+    freedv_set_test_frames_diversity
+      ( struct freedv* freedv, int test_frames_diversity )
+  Parameter nbits of type int has been added to cohpsk_mod()
+  Parameter channel of type int has been added to cohpsk_put_test_bits()
+				   
+ -- A. Maitland Bottoms <bottoms@debian.org>  Tue, 08 Aug 2017 10:58:45 -0400
+
 codec2 (0.6-1) unstable; urgency=medium
 
   * New upstream release

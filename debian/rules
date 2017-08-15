@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 %:
-	dh $@ --builddirectory=Build --buildsystem=cmake --with acc
+	dh $@ --builddirectory=Build --buildsystem=cmake
 
 override_dh_auto_configure:
 	dh_auto_configure --builddirectory=Build --buildsystem=cmake -- \

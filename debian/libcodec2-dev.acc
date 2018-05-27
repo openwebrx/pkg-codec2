@@ -6,7 +6,7 @@ debian/libcodec2-dev/usr/include/codec2/
 </headers>
 
 <libs>
-./debian/libcodec2-0.7/usr/lib/
+./debian/libcodec2-0.8/usr/lib/
 </libs>
 
 </descriptor>

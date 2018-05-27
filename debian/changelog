@@ -1,3 +1,25 @@
+codec2 (0.8-2) unstable; urgency=medium
+
+  * Upload to unstable
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sun, 27 May 2018 15:15:14 -0400
+
+codec2 (0.8-1) experimental; urgency=medium
+
+  * New upstream release - r3640
+  * acc results in libcodec2-dev_0.8-1_report.html
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sun, 27 May 2018 00:52:44 -0400
+
+codec2 (0.8~20180512-1) experimental; urgency=medium
+
+  * Try r3593
+  * First upload to experimental pending API/ABI bump to 0.8
+  * acc results in libcodec2-dev_0.7.20180512-1_report.html
+  * New upstream FREEDV_MODE_700D, CODEC2_MODE_WB modes
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sun, 13 May 2018 17:05:55 -0400
+
 codec2 (0.7-1) unstable; urgency=medium
 
   * New upstream release

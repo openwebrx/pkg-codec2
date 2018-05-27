@@ -7,6 +7,7 @@ Copyright: Copyright 2007-2016 David Rowe
 License: LGPL-2.1
 
 Files: CMakeLists.txt INSTALL README README_fdmdv.txt
+ README_ofdm.txt
 Copyright: Copyright 2007-2017 David Rowe
 License: LGPL-2.1
 

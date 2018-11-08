@@ -1,3 +1,6 @@
+Description: install fmfsk.h
+Author: A. Maitland Bottoms <bottoms@debian.org>
+
 --- a/src/fsk.h
 +++ b/src/fsk.h
 @@ -30,7 +30,7 @@

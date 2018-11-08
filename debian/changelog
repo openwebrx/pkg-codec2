@@ -1,3 +1,19 @@
+codec2 (0.8.1-2) unstable; urgency=medium
+
+  * provide modern cmake targets
+    and also ship the pkg-config .pc file.
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sun, 23 Sep 2018 11:36:07 -0400
+
+codec2 (0.8.1-1) experimental; urgency=medium
+
+  * New upstream release
+  * update watch file
+  * Bump soversion because of ABI breakage
+    acc results in libcodec2-dev_0.8.1-1_report.html
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Wed, 06 Jun 2018 21:39:23 -0400
+
 codec2 (0.8-2) unstable; urgency=medium
 
   * Upload to unstable

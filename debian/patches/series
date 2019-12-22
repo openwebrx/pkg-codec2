@@ -1,4 +1,3 @@
-single-definition-of-quiskFilt120t480
 fsk_fft_api
-bump-soversion-to-0.8.1
 modern-cmake-targets
+debian-source-package

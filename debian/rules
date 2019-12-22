@@ -9,5 +9,16 @@ override_dh_auto_configure:
 	-DINSTALL_EXAMPLES=TRUE \
 	-DUNITTEST=TRUE
 
+override_dh_auto_build:
+	dh_auto_build --builddirectory=Build --buildsystem=cmake
+	mkdir Build/lpcnet-build
+	cd Build/lpcnet-build && cmake -DCMAKE_VERBOSE_MAKEFILE=ON -DDISABLE_CPU_OPTIMIZATION=ON -DCODEC2_BUILD_DIR=$(CURDIR)/Build ../../lpcnet
+	cd Build/lpcnet-build && cmake --build .
+	cd Build && cmake -DLPCNET_BUILD_DIR=lpcnet-build ..
+	cd Build && cmake --build .
+
+override_dh_auto_test:
+	- override_dh_auto_test
+
 override_dh_acc:
 	- dh_acc $@

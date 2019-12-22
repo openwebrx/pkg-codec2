@@ -1,2 +1,4 @@
-version=3
- https://hobbes1069.fedorapeople.org/freetel/codec2/ codec2-(.+)\.tar\.xz
+version=4
+opts="filenamemangle=s%(?:.*?)?v?(\d[\d.]*)\.tar\.gz%codec2_$1.orig.tar.gz%" \
+ https://github.com/drowe67/codec2/tags \
+ (?:.*?/)?v?(\d[\d.]*)\.tar\.gz debian uupdate

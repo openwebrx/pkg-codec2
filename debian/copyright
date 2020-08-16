@@ -8,21 +8,15 @@ Source: https://github.com/drowe67/codec2/
 Copyright: Copyright 2007-2019 David Rowe
 License: LGPL-2.1
 
-Files: asterisk/* asterisk-11/* cmake/* misc/* lpcnet191005/*
+Files: cmake/* misc/* lpcnet191005/*
  octave/* raw/* script/* src/* stm32/* unittest/* wav/*
  debian/codec2.doc-base.EX debian/codec21.dirs
  debian/codec21.install debian/libcodec2.install
  README_fsk.txt README.md codec2.pc.in CMakeLists.txt
- INSTALL README README_fdmdv.txt README_ofdm.txt
+ INSTALL README_fdmdv.txt README_ofdm.txt
  README_cohpsk.md .gitignore .travis.yml
 Copyright: Copyright 2007-2019 David Rowe
 License: LGPL-2.1
-
-Files: COPYING
-Copyright: 1989, 1991 Free Software Foundation, Inc.
-License: COPYING
- Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
 
 Files: src/golay23.c
 Copyright: 2016 Tomas Härdin & David Rowe
@@ -31,10 +25,6 @@ License: LGPL-2.1
 Files: src/pack.c
 Copyright: (C) 2010 Perens LLC <bruce@perens.com>
 License: LGPL-2.1
-
-Files: unittest/vq_train_jvm.c unittest/ge_train.c
-Copyright: (C) 2012 Jean-Marc Valin
-License: LGPL-2
 
 Files: stm32/inc/iir_duc.h stm32/src/iir_duc.c
 Copyright: 2015 Brady O'Brien

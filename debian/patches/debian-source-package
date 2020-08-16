@@ -1,3 +1,7 @@
+Description: The Debian source contains the lpcnet tar source,
+ So this patch uses that feature and avoids fetching content.
+Author: A. Maitland Bottoms <bottoms@debian.org>
+
 --- a/lpcnet/CMakeLists.txt
 +++ b/lpcnet/CMakeLists.txt
 @@ -48,7 +48,7 @@

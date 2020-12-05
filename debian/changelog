@@ -1,3 +1,13 @@
+codec2 (0.9.2-4) unstable; urgency=medium
+
+  * update homepage (Closes: #976065)
+  * add and update manpages
+  * Move-allocation-pointers-to-ofdm-struct
+    Fixes bug in using multiple freedv_api instances in one process
+    found by quisk and qradiolink.
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Fri, 04 Dec 2020 22:54:05 -0500
+
 codec2 (0.9.2-3) unstable; urgency=medium
 
   [ Helmut Grohne ]

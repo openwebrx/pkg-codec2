@@ -1,0 +1,26 @@
+From b54d25d947a6d70bcc780268c3436340fdc13086 Mon Sep 17 00:00:00 2001
+From: Mooneer Salem <mooneer@gmail.com>
+Date: Wed, 20 Oct 2021 23:38:55 -0700
+Subject: [PATCH 20/53] Revert "Remove one last unneeded escape."
+
+This reverts commit 3fa209ccd60f9adfebfb5266ee82fe640b81bee4.
+---
+ README_freedv.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/README_freedv.md b/README_freedv.md
+index 6f524e1e..db2b172b 100644
+--- a/README_freedv.md
++++ b/README_freedv.md
+@@ -132,7 +132,7 @@ Available modes:
+ #### Enabling reliable receiving/sending of callsigns in the voice stream (e.g. for PSK Reporter)
+ 
+ ```
+-#include "reliable_text.h"
++\#include "reliable_text.h"
+ 
+ reliable_text_t rt = reliable_text_create();
+ if (rt == NULL) { /* handle error */ }
+-- 
+2.30.2
+

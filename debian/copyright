@@ -8,13 +8,12 @@ Source: https://github.com/drowe67/codec2/
 Copyright: Copyright 2007-2019 David Rowe
 License: LGPL-2.1
 
-Files: cmake/* misc/* lpcnet191005/*
+Files: cmake/* doc/* demo/* misc/* lpcnet191005/*
  octave/* raw/* script/* src/* stm32/* unittest/* wav/*
- debian/codec2.doc-base.EX debian/codec21.dirs
- debian/codec21.install debian/libcodec2.install
- README_fsk.txt README.md codec2.pc.in CMakeLists.txt
- INSTALL README_fdmdv.txt README_ofdm.txt
- README_cohpsk.md .gitignore .travis.yml
+ README_fsk.md README.md codec2.pc.in CMakeLists.txt
+ README_data.md README_fdmdv.md README_ofdm.md
+ README_cohpsk.md README_freedv.md .gitignore .travis.yml
+ .github/workflows/cmake.yml
 Copyright: Copyright 2007-2019 David Rowe
 License: LGPL-2.1
 

@@ -1,0 +1,18 @@
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -403,3 +403,15 @@
+     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/codec2 COMPONENT dev
+ )
++
++install(TARGETS
++    c2enc
++    c2dec
++    fdmdv_get_test_bits
++    fdmdv_mod fdmdv_demod
++    fm_demod
++    fsk_mod
++    fdmdv_put_test_bits
++    insert_errors
++    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
++)

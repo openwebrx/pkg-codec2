@@ -1,0 +1,25 @@
+From 59750a930523bf108b53af80734e43bcde4364ba Mon Sep 17 00:00:00 2001
+From: Mooneer Salem <mooneer@gmail.com>
+Date: Thu, 4 Nov 2021 00:47:14 -0700
+Subject: [PATCH 39/53] Resolve uninitialized value compile error.
+
+---
+ src/codec2.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/codec2.c b/src/codec2.c
+index f3682519..2d254398 100644
+--- a/src/codec2.c
++++ b/src/codec2.c
+@@ -1751,7 +1751,7 @@ float codec2_get_energy(struct CODEC2 *c2, const unsigned char *bits)
+     MODEL model;
+     float xq_dec[2] = {};
+     int e_index, WoE_index;
+-    float e;
++    float e = 0.0f;
+     unsigned int nbit;
+ 
+     if ( CODEC2_MODE_ACTIVE(CODEC2_MODE_3200, c2->mode)) {
+-- 
+2.30.2
+

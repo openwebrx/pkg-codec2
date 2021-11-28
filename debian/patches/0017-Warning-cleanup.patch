@@ -1,0 +1,118 @@
+From 84c716efcb8575f2aae2cff47808cf07ef10352f Mon Sep 17 00:00:00 2001
+From: Mooneer Salem <mooneer@gmail.com>
+Date: Wed, 13 Oct 2021 21:56:00 -0700
+Subject: [PATCH 17/53] Warning cleanup.
+
+---
+ src/fmfsk.c       | 10 ++++++----
+ src/fsk.c         | 15 ++++++++-------
+ src/modem_stats.c |  4 +---
+ 3 files changed, 15 insertions(+), 14 deletions(-)
+
+diff --git a/src/fmfsk.c b/src/fmfsk.c
+index eefff834..86c526b6 100644
+--- a/src/fmfsk.c
++++ b/src/fmfsk.c
+@@ -168,7 +168,7 @@ void fmfsk_mod(struct FMFSK *fmfsk, float fmfsk_out[],uint8_t bits_in[]){
+  * float fsk_in[] - nin samples of modualted FMFSK from an FM radio
+  */
+ void fmfsk_demod(struct FMFSK *fmfsk, uint8_t rx_bits[],float fmfsk_in[]){
+-    int i,j,k;
++    int i,j;
+     int Ts          = fmfsk->Ts;
+     int Fs          = fmfsk->Fs;
+     int Rs          = fmfsk->Rs;
+@@ -187,9 +187,6 @@ void fmfsk_demod(struct FMFSK *fmfsk, uint8_t rx_bits[],float fmfsk_in[]){
+     int next_nin;
+     float apeven,apodd;     /* Approx. prob of even or odd stream being correct */
+     float currv,mdiff,lastv;
+-    int neyesamp;
+-    int neyeoffset;
+-    float eye_max;
+     uint8_t mbit;
+     float var_signal = 0, var_noise = 0, lastFabsV;
+     
+@@ -343,6 +340,11 @@ void fmfsk_demod(struct FMFSK *fmfsk, uint8_t rx_bits[],float fmfsk_in[]){
+     fmfsk->stats->snr_est = fmfsk->snr_mean;
+ 
+ #ifndef __EMBEDDED__
++    int neyesamp;
++    int neyeoffset;
++    float eye_max;
++    int k;
++
+     /* Collect an eye diagram */
+     /* Take a sample for the eye diagrams */
+     neyesamp = fmfsk->stats->neyesamp = Ts*4;
+diff --git a/src/fsk.c b/src/fsk.c
+index 6a48b449..b04dd6d6 100644
+--- a/src/fsk.c
++++ b/src/fsk.c
+@@ -640,8 +640,7 @@ void fsk_demod_core(struct FSK *fsk, uint8_t rx_bits[], float rx_filt[], COMP fs
+     float rx_timing,norm_rx_timing,old_norm_rx_timing,d_norm_rx_timing,appm;
+ 
+     float fc_avg,fc_tx;
+-    float meanebno,stdebno,eye_max;
+-    int neyesamp,neyeoffset;
++    float meanebno,stdebno;
+     
+     #ifdef MODEMPROBE_ENABLE
+     #define NMP_NAME 26
+@@ -879,6 +878,8 @@ void fsk_demod_core(struct FSK *fsk, uint8_t rx_bits[], float rx_filt[], COMP fs
+        trace.  So lets output a decimated version.  We use 2P
+        as we want two symbols worth of samples in trace  */
+ #ifndef __EMBEDDED__
++    float eye_max;
++    int neyesamp,neyeoffset;
+     int neyesamp_dec = ceil(((float)P*2)/MODEM_STATS_EYE_IND_MAX);
+     neyesamp = (P*2)/neyesamp_dec;
+     assert(neyesamp <= MODEM_STATS_EYE_IND_MAX);
+@@ -957,11 +958,6 @@ void fsk_demod_sd(struct FSK *fsk, float rx_filt[], COMP fsk_in[]){
+ 
+ /* make sure stats have known values in case monitoring process reads stats before they are set */
+ static void stats_init(struct FSK *fsk) {
+-    /* Take a sample for the eye diagrams */
+-    int i,j,m;
+-    int P = fsk->P;
+-    int M = fsk->mode;
+-
+     /* due to oversample rate P, we have too many samples for eye
+        trace.  So lets output a decimated version */
+ 
+@@ -969,6 +965,11 @@ static void stats_init(struct FSK *fsk) {
+     
+     /* TODO: refactor eye tracing code here and in fsk_demod */
+ #ifndef __EMBEDDED__    
++    /* Take a sample for the eye diagrams */
++    int i,j,m;
++    int P = fsk->P;
++    int M = fsk->mode;
++
+     int neyesamp_dec = ceil(((float)P*2)/MODEM_STATS_EYE_IND_MAX);
+     int neyesamp = (P*2)/neyesamp_dec;
+     assert(neyesamp <= MODEM_STATS_EYE_IND_MAX);
+diff --git a/src/modem_stats.c b/src/modem_stats.c
+index 76214f3c..f4bc1a01 100644
+--- a/src/modem_stats.c
++++ b/src/modem_stats.c
+@@ -33,8 +33,6 @@
+ 
+ void modem_stats_open(struct MODEM_STATS *f)
+ {
+-    int i;
+-
+     /* zero out all the stats */
+ 
+     memset(f, 0, sizeof(struct MODEM_STATS));
+@@ -42,7 +40,7 @@ void modem_stats_open(struct MODEM_STATS *f)
+     /* init the FFT */
+ 
+ #ifndef __EMBEDDED__
+-    for(i=0; i<2*MODEM_STATS_NSPEC; i++)
++    for(int i=0; i<2*MODEM_STATS_NSPEC; i++)
+ 	f->fft_buf[i] = 0.0;
+     f->fft_cfg = (void*)kiss_fft_alloc (2*MODEM_STATS_NSPEC, 0, NULL, NULL);
+     assert(f->fft_cfg != NULL);
+-- 
+2.30.2
+

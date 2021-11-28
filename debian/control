@@ -28,7 +28,7 @@ Description: Codec2 sample data and examples
  .
  This package contains sample data and supporting examples.
 
-Package: libcodec2-0.9
+Package: libcodec2-1.0
 Section: libs
 Architecture: any
 Pre-Depends: ${misc:Pre-Depends}
@@ -46,7 +46,7 @@ Package: libcodec2-dev
 Architecture: any
 Section: libdevel
 Pre-Depends: ${misc:Pre-Depends}
-Depends: libcodec2-0.9 (= ${binary:Version}), ${misc:Depends}
+Depends: libcodec2-1.0 (= ${binary:Version}), ${misc:Depends}
 Suggests: pkg-config
 Description: Codec2 library development files
  Codec2 is an audio codec especially designed for compressing voice at

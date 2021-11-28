@@ -1,0 +1,73 @@
+From e2875ad4c9d179ee1d1622cca9df4321c5bdab35 Mon Sep 17 00:00:00 2001
+From: Mooneer Salem <mooneer@gmail.com>
+Date: Fri, 22 Oct 2021 23:46:15 -0700
+Subject: [PATCH 26/53] Use non in-place FFT for dft_speech().
+
+---
+ src/codec2.c | 4 ++++
+ src/sine.c   | 6 ++++--
+ src/sine.h   | 4 ++++
+ 3 files changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/src/codec2.c b/src/codec2.c
+index f3682519..62feb255 100644
+--- a/src/codec2.c
++++ b/src/codec2.c
+@@ -2088,7 +2088,11 @@ void analyse_one_frame(struct CODEC2 *c2, MODEL *model, short speech[])
+     for(i=0; i<n_samp; i++)
+       c2->Sn[i+m_pitch-n_samp] = speech[i];
+ 
++#if defined(STM32F40_41xxx)
+     dft_speech(&c2->c2const, c2->fft_fwd_cfg, Sw, c2->Sn, c2->w);
++#else
++    dft_speech(&c2->c2const, c2->fftr_fwd_cfg, Sw, c2->Sn, c2->w);
++#endif // STM32F40_41xxx
+ 
+     /* Estimate pitch */
+     nlp(c2->nlp, c2->Sn, n_samp, &pitch, Sw, c2->W, &c2->prev_f0_enc);
+diff --git a/src/sine.c b/src/sine.c
+index 8fbd5506..4c3c5659 100644
+--- a/src/sine.c
++++ b/src/sine.c
+@@ -231,7 +231,7 @@ float hpf(float x, float states[])
+ 
+ // TODO: we can either go for a faster FFT using fftr and some stack usage
+ // or we can reduce stack usage to almost zero on STM32 by switching to fft_inplace
+-#if 1
++#if defined(STM32F40_41xxx)
+ void dft_speech(C2CONST *c2const, codec2_fft_cfg fft_fwd_cfg, COMP Sw[], float Sn[], float w[])
+ {
+     int  i;
+@@ -259,10 +259,12 @@ void dft_speech(C2CONST *c2const, codec2_fft_cfg fft_fwd_cfg, COMP Sw[], float S
+     codec2_fft_inplace(fft_fwd_cfg, Sw);
+ }
+ #else
+-void dft_speech(codec2_fftr_cfg fftr_fwd_cfg, COMP Sw[], float Sn[], float w[])
++void dft_speech(C2CONST* c2const, codec2_fftr_cfg fftr_fwd_cfg, COMP Sw[], float Sn[], float w[])
+ {
+     int  i;
+   float sw[FFT_ENC];
++    int  m_pitch = c2const->m_pitch;
++    int   nw      = c2const->nw;
+ 
+   for(i=0; i<FFT_ENC; i++) {
+     sw[i] = 0.0;
+diff --git a/src/sine.h b/src/sine.h
+index 21d21fbc..a51ce4f6 100644
+--- a/src/sine.h
++++ b/src/sine.h
+@@ -36,7 +36,11 @@ C2CONST c2const_create(int Fs, float framelength_ms);
+ 
+ void make_analysis_window(C2CONST *c2const, codec2_fft_cfg fft_fwd_cfg, float w[], float W[]);
+ float hpf(float x, float states[]);
++#if defined(STM32F40_41xxx)
+ void dft_speech(C2CONST *c2const, codec2_fft_cfg fft_fwd_cfg, COMP Sw[], float Sn[], float w[]);
++#else
++void dft_speech(C2CONST* c2const, codec2_fftr_cfg fftr_fwd_cfg, COMP Sw[], float Sn[], float w[]);
++#endif
+ void two_stage_pitch_refinement(C2CONST *c2const, MODEL *model, COMP Sw[]);
+ void estimate_amplitudes(MODEL *model, COMP Sw[], float W[], int est_phase);
+ float est_voicing_mbe(C2CONST *c2const, MODEL *model, COMP Sw[], float W[]);
+-- 
+2.30.2
+

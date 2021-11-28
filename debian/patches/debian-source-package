@@ -64,8 +64,8 @@ Author: A. Maitland Bottoms <bottoms@debian.org>
      PUBLIC_HEADER lpcnet_freedv.h
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
-@@ -248,6 +248,9 @@
-     horus_api.h
+@@ -230,6 +230,9 @@
+     reliable_text.h
      ${CODEC2_VERSION_PATH}/version.h
  )
 +if(LPCNET)
@@ -74,7 +74,7 @@ Author: A. Maitland Bottoms <bottoms@debian.org>
  
  #
  # Debug options
-@@ -259,10 +262,10 @@
+@@ -241,10 +244,10 @@
  #
  add_library(codec2 ${CODEC2_SRCS})
  if(UNIX)

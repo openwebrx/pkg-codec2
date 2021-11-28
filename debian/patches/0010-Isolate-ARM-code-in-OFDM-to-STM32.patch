@@ -1,0 +1,46 @@
+From 81eff3922c6bd7c8101a619ff2e692306a3e3c19 Mon Sep 17 00:00:00 2001
+From: Mooneer Salem <mooneer@gmail.com>
+Date: Fri, 17 Sep 2021 22:59:37 -0700
+Subject: [PATCH 10/53] Isolate ARM code in OFDM to STM32.
+
+---
+ src/ofdm.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/ofdm.c b/src/ofdm.c
+index e4b482b6..165d9bc4 100644
+--- a/src/ofdm.c
++++ b/src/ofdm.c
+@@ -43,9 +43,9 @@
+ #include "debug_alloc.h"
+ #include "machdep.h"
+ 
+-#ifdef __EMBEDDED__
++#ifdef STM32F40_41xxx
+ #include "arm_math.h"
+-#endif /* __EMBEDDED_ */
++#endif /* STM32F40_41xxx */
+ 
+ /* Static Prototypes */
+ 
+@@ -731,7 +731,7 @@ static int est_timing(struct OFDM *ofdm, complex float *rx, int length,
+         corr_st = 0.0f;
+         corr_en = 0.0f;
+ 
+-#ifdef __EMBEDDED__
++#ifdef STM32F40_41xxx
+ #ifdef __REAL__
+ 	float re,im;
+ 
+@@ -758,7 +758,7 @@ static int est_timing(struct OFDM *ofdm, complex float *rx, int length,
+ 	    corr_st = corr_st + (rx[ind                        ] * wvec_pilot[j]);
+             corr_en = corr_en + (rx[ind + ofdm->samplesperframe] * wvec_pilot[j]);
+         }
+-#endif
++#endif // STM32F40_41xxx
+         corr[i] = (cabsf(corr_st) + cabsf(corr_en)) * av_level;
+     }
+ 
+-- 
+2.30.2
+

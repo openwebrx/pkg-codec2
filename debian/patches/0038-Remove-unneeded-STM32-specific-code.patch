@@ -1,0 +1,30 @@
+From eba3507cc20abf68d1d1e5c77c88dec4bab1af20 Mon Sep 17 00:00:00 2001
+From: Mooneer Salem <mooneer@gmail.com>
+Date: Mon, 1 Nov 2021 18:26:05 -0700
+Subject: [PATCH 38/53] Remove unneeded STM32 specific code.
+
+---
+ src/dump.c | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/src/dump.c b/src/dump.c
+index 0a19943e..ff1977da 100644
+--- a/src/dump.c
++++ b/src/dump.c
+@@ -32,13 +32,6 @@
+ #include <string.h>
+ #include <math.h>
+ 
+-#ifdef STM32F40_41xxx
+-#include "gdb_stdio.h"
+-#define fprintf gdb_stdio_fprintf
+-#define fopen gdb_stdio_fopen
+-#define fclose gdb_stdio_fclose
+-#endif
+-
+ #ifdef DUMP
+ static int dumpon = 0;
+ 
+-- 
+2.30.2
+

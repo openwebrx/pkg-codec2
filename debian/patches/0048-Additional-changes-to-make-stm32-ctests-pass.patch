@@ -1,0 +1,231 @@
+From c24198a7c9a06f8f8a49b8db0c7c220918b9c431 Mon Sep 17 00:00:00 2001
+From: Mooneer Salem <mooneer@gmail.com>
+Date: Wed, 10 Nov 2021 08:39:16 +1030
+Subject: [PATCH 48/53] Additional changes to make stm32 ctests pass.
+
+---
+ stm32/support/hex2dfu.py           |  6 +++---
+ stm32/support/intelhex/__init__.py | 22 +++++++++++-----------
+ stm32/support/intelhex/bench.py    |  8 ++++----
+ stm32/support/intelhex/test.py     | 10 +++++-----
+ 4 files changed, 23 insertions(+), 23 deletions(-)
+
+diff --git a/stm32/support/hex2dfu.py b/stm32/support/hex2dfu.py
+index 31e46e83..0585aafa 100755
+--- a/stm32/support/hex2dfu.py
++++ b/stm32/support/hex2dfu.py
+@@ -21,7 +21,7 @@ import struct
+ import argparse
+ from zlib import crc32
+ from intelhex import IntelHex
+-
++from numpy.compat.py3k import asbytes
+ 
+ def load_hex():
+     """
+@@ -64,12 +64,12 @@ def save_dfu(ih):
+ 
+     # Image element
+     #
+-    image_data = ih.tobinstr()
++    image_data = asbytes(ih.tobinstr())
+ 
+     data = struct.pack(
+         "<II",
+         ih.minaddr(),       # dwElementAddress
+-        len(image_data)     # dwElementSize
++        len(image_data),    # dwElementSize
+     ) + image_data          # Data
+ 
+     # Target prefix
+diff --git a/stm32/support/intelhex/__init__.py b/stm32/support/intelhex/__init__.py
+index 92d5f6bc..567fad7e 100644
+--- a/stm32/support/intelhex/__init__.py
++++ b/stm32/support/intelhex/__init__.py
+@@ -47,7 +47,7 @@ from bisect import bisect_right
+ import os
+ import sys
+ 
+-from compat import asbytes, asstr
++from numpy.compat.py3k import asbytes, asstr
+ 
+ 
+ class _DeprecatedParam(object):
+@@ -132,7 +132,7 @@ class IntelHex(object):
+         if record_type == 0:
+             # data record
+             addr += self._offset
+-            for i in xrange(4, 4+record_length):
++            for i in range(4, 4+record_length):
+                 if not self._buf.get(addr, None) is None:
+                     raise AddressOverlapError(address=addr, line=line)
+                 self._buf[addr] = bin[i]
+@@ -343,7 +343,7 @@ class IntelHex(object):
+ 
+         start, end = self._get_start_end(start, end, size)
+ 
+-        for i in xrange(start, end+1):
++        for i in range(start, end+1):
+             bin.append(self._buf.get(i, pad))
+ 
+         return bin
+@@ -461,7 +461,7 @@ class IntelHex(object):
+                 start = addr.start or addresses[0]
+                 stop = addr.stop or (addresses[-1]+1)
+                 step = addr.step or 1
+-                for i in xrange(start, stop, step):
++                for i in range(start, stop, step):
+                     x = self._buf.get(i)
+                     if x is not None:
+                         ih[i] = x
+@@ -498,7 +498,7 @@ class IntelHex(object):
+             if stop < 0:
+                 raise TypeError('stop address cannot be negative')
+             j = 0
+-            for i in xrange(start, stop, step):
++            for i in range(start, stop, step):
+                 self._buf[i] = byte[j]
+                 j += 1
+         else:
+@@ -518,7 +518,7 @@ class IntelHex(object):
+                 start = addr.start or addresses[0]
+                 stop = addr.stop or (addresses[-1]+1)
+                 step = addr.step or 1
+-                for i in xrange(start, stop, step):
++                for i in range(start, stop, step):
+                     x = self._buf.get(i)
+                     if x is not None:
+                         del self._buf[i]
+@@ -706,7 +706,7 @@ class IntelHex(object):
+         be raised. Padding is not used."""
+         a = array('B', asbytes('\0'*length))
+         try:
+-            for i in xrange(length):
++            for i in range(length):
+                 a[i] = self._buf[addr+i]
+         except KeyError:
+             raise NotEnoughDataError(address=addr, length=length)
+@@ -717,7 +717,7 @@ class IntelHex(object):
+         entries.
+         """
+         a = array('B', asbytes(s))
+-        for i in xrange(len(a)):
++        for i in range(len(a)):
+             self._buf[addr+i] = a[i]
+ 
+     def getsz(self, addr):
+@@ -772,7 +772,7 @@ class IntelHex(object):
+             maxdigits = max(len(str(endaddr)), 4)
+             templa = '%%0%dX' % maxdigits
+             range16 = range(16)
+-            for i in xrange(startaddr, endaddr, 16):
++            for i in range(startaddr, endaddr, 16):
+                 tofile.write(templa % i)
+                 tofile.write(' ')
+                 s = []
+@@ -941,7 +941,7 @@ class IntelHex16bit(IntelHex):
+ 
+         start, end = self._get_start_end(start, end, size)
+ 
+-        for addr in xrange(start, end+1):
++        for addr in range(start, end+1):
+             bin.append(self[addr])
+ 
+         return bin
+@@ -1215,7 +1215,7 @@ class IntelHexError(Exception):
+             return self.msg
+         try:
+             return self._fmt % self.__dict__
+-        except (NameError, ValueError, KeyError), e:
++        except (NameError, ValueError, KeyError) as e:
+             return 'Unprintable exception %s: %s' \
+                 % (repr(e), str(e))
+ 
+diff --git a/stm32/support/intelhex/bench.py b/stm32/support/intelhex/bench.py
+index f4d1cbfd..b9c555aa 100644
+--- a/stm32/support/intelhex/bench.py
++++ b/stm32/support/intelhex/bench.py
+@@ -64,7 +64,7 @@ def run_readtest_N_times(func, hexstr, n):
+     """
+     assert n > 0
+     times = []
+-    for i in xrange(n):
++    for i in range(n):
+         sio = StringIO(hexstr)
+         times.append(run_test(func, sio))
+         sio.close()
+@@ -79,7 +79,7 @@ def run_writetest_N_times(func, n):
+     """
+     assert n > 0
+     times = []
+-    for i in xrange(n):
++    for i in range(n):
+         sio = StringIO()
+         times.append(run_test(func, sio))
+         sio.close()
+@@ -111,11 +111,11 @@ def get_test_data(n1, offset, n2):
+     # make IntelHex object
+     ih = intelhex.IntelHex()
+     addr = 0
+-    for i in xrange(n1):
++    for i in range(n1):
+         ih[addr] = addr % 256
+         addr += 1
+     addr += offset
+-    for i in xrange(n2):
++    for i in range(n2):
+         ih[addr] = addr % 256
+         addr += 1
+     # make hex file
+diff --git a/stm32/support/intelhex/test.py b/stm32/support/intelhex/test.py
+index 704c0df9..46f5e606 100644
+--- a/stm32/support/intelhex/test.py
++++ b/stm32/support/intelhex/test.py
+@@ -422,7 +422,7 @@ class TestIntelHex(TestIntelHexBase):
+ 
+     def test_init_from_file(self):
+         ih = IntelHex(self.f)
+-        for addr in xrange(len(bin8)):
++        for addr in range(len(bin8)):
+             expected = bin8[addr]
+             actual = ih[addr]
+             self.assertEqual(expected, actual,
+@@ -432,7 +432,7 @@ class TestIntelHex(TestIntelHexBase):
+     def test_hex_fromfile(self):
+         ih = IntelHex()
+         ih.fromfile(self.f, format='hex')
+-        for addr in xrange(len(bin8)):
++        for addr in range(len(bin8)):
+             expected = bin8[addr]
+             actual = ih[addr]
+             self.assertEqual(expected, actual,
+@@ -700,7 +700,7 @@ class TestIntelHex(TestIntelHexBase):
+         #
+         def ihex(size=8):
+             ih = IntelHex()
+-            for i in xrange(size):
++            for i in range(size):
+                 ih[i] = i
+             return ih
+         ih = ihex(8)
+@@ -866,7 +866,7 @@ class TestIntelHexGetPutString(TestIntelHexBase):
+ 
+     def setUp(self):
+         self.ih = IntelHex()
+-        for i in xrange(10):
++        for i in range(10):
+             self.ih[i] = i
+ 
+     def test_gets(self):
+@@ -1378,7 +1378,7 @@ class TestHex2Bin(unittest.TestCase):
+     def test_hex2bin(self):
+         ih = hex2bin(self.fin, self.fout)
+         data = array.array('B', asbytes(self.fout.getvalue()))
+-        for addr in xrange(len(bin8)):
++        for addr in range(len(bin8)):
+             expected = bin8[addr]
+             actual = data[addr]
+             self.assertEqual(expected, actual,
+-- 
+2.30.2
+

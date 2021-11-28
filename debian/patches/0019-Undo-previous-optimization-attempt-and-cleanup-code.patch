@@ -1,0 +1,39 @@
+From aead2efbac9f3d35147164f52b2b4206435ca22d Mon Sep 17 00:00:00 2001
+From: Mooneer Salem <mooneer@gmail.com>
+Date: Mon, 18 Oct 2021 19:56:46 -0700
+Subject: [PATCH 19/53] Undo previous optimization attempt and cleanup code.
+
+---
+ src/mbest.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/src/mbest.c b/src/mbest.c
+index 6f9190d1..46d890de 100644
+--- a/src/mbest.c
++++ b/src/mbest.c
+@@ -122,15 +122,16 @@ void mbest_search(
+ )
+ {
+    float   e;
+-
+-   for(int j=0; j<m; j++) {
+-        float   diff;
++   
++   for(int j = 0; j < m; j++) {
+         int i;
+ 
+         e = 0.0;
+-        for(int i = 0; i < k && e < mbest->list[mbest->entries - 1].error; i++) {
+-            diff = cb[j*k+i]-vec[i];
+-            e += diff*w[i]*diff*w[i];
++        for(int i = 0; i < k; i++) {
++            float diff = (*cb++) - vec[i];
++            float diff2 = diff * diff;
++            float w2 = w[i] * w[i];
++            e += diff2 * w2;
+         }
+ 
+         index[0] = j;
+-- 
+2.30.2
+

@@ -1,0 +1,26 @@
+From 6a0fd1bd6ab3baccb2ea7f158f4783f504d677c7 Mon Sep 17 00:00:00 2001
+From: David Rowe <david@rowetel.com>
+Date: Sun, 31 Oct 2021 06:42:19 +1030
+Subject: [PATCH 34/53] reduced SPARE_RAM in order to get
+ tst_api_demod_700D_AWGN_test to pass
+
+---
+ stm32/unittest/src/tst_api_demod.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/stm32/unittest/src/tst_api_demod.c b/stm32/unittest/src/tst_api_demod.c
+index a72194c6..fd55133b 100644
+--- a/stm32/unittest/src/tst_api_demod.c
++++ b/stm32/unittest/src/tst_api_demod.c
+@@ -96,7 +96,7 @@ void my_datatx(void *callback_state, unsigned char *packet, size_t *size) {
+     *size = 0;
+ }
+ 
+-#define SPARE_RAM 10000
++#define SPARE_RAM 4000
+ 
+ int main(int argc, char *argv[]) {
+     char           dummy[SPARE_RAM];
+-- 
+2.30.2
+

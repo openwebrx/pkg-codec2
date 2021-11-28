@@ -1,0 +1,46 @@
+From 29732ed9dff5c92c42ab4bf9a2f4a765d9e97358 Mon Sep 17 00:00:00 2001
+From: Steve <coupaydeville@gmail.com>
+Date: Mon, 8 Nov 2021 02:37:23 -0600
+Subject: [PATCH 44/53] Update fsk_put_test_bits.c
+
+Change from alloca() to malloc() for msys compatibility
+---
+ src/fsk_put_test_bits.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/src/fsk_put_test_bits.c b/src/fsk_put_test_bits.c
+index 2df1f5b6..7b2da343 100644
+--- a/src/fsk_put_test_bits.c
++++ b/src/fsk_put_test_bits.c
+@@ -29,7 +29,6 @@
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
+-#include <alloca.h>
+ #include <string.h>
+ #include <getopt.h>
+ #include "fsk.h"
+@@ -106,8 +105,8 @@ int main(int argc,char *argv[]){
+     }
+ 
+     /* allocate buffers for processing */
+-    bitbuf_tx = (uint8_t*)alloca(sizeof(uint8_t)*framesize);
+-    bitbuf_rx = (uint8_t*)alloca(sizeof(uint8_t)*framesize);
++    bitbuf_tx = (uint8_t*)malloc(sizeof(uint8_t)*framesize);
++    bitbuf_rx = (uint8_t*)malloc(sizeof(uint8_t)*framesize);
+     
+     /* Generate known tx frame from known seed */
+     srand(158324);
+@@ -154,6 +153,9 @@ int main(int argc,char *argv[]){
+         }
+     }
+  
++    free(bitbuf_rx);
++    free(bitbuf_tx);
++
+     fclose(fin);
+ 
+     fprintf(stderr,"[%04d] BER %5.3f, bits tested %6d, bit errors %6d\n", packetcnt, ber, bitcnt, biterr);
+-- 
+2.30.2
+

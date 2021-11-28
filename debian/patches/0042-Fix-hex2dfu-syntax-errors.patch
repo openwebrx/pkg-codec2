@@ -1,0 +1,135 @@
+From ec7b3e28e1885bed41f5e938a1b3fe3c632f7690 Mon Sep 17 00:00:00 2001
+From: Mooneer Salem <mooneer@gmail.com>
+Date: Sun, 7 Nov 2021 13:42:51 -0800
+Subject: [PATCH 42/53] Fix hex2dfu syntax errors.
+
+---
+ stm32/support/hex2dfu.py           | 20 ++++++++++----------
+ stm32/support/intelhex/__init__.py | 24 ++++++++++++------------
+ 2 files changed, 22 insertions(+), 22 deletions(-)
+
+diff --git a/stm32/support/hex2dfu.py b/stm32/support/hex2dfu.py
+index c6c13f57..d9597ac7 100755
+--- a/stm32/support/hex2dfu.py
++++ b/stm32/support/hex2dfu.py
+@@ -29,7 +29,7 @@ def load_hex():
+     :return:    intelhex object
+     """
+     if args.verbose:
+-        print "Loading %s..." % args.source
++        print("Loading %s..." % args.source)
+ 
+     try:
+         ih = IntelHex()
+@@ -40,12 +40,12 @@ def load_hex():
+             ih.loadbin(args.source, args.start_addr)
+ 
+     except Exception, e:
+-        print e
++        print(e)
+         exit(1)
+ 
+     if args.verbose:
+-        print "  Start: 0x%08x" % ih.minaddr()
+-        print "  End  : 0x%08x" % ih.maxaddr()
++        print("  Start: 0x%08x" % ih.minaddr())
++        print("  End  : 0x%08x" % ih.maxaddr())
+ 
+     return ih
+ 
+@@ -58,9 +58,9 @@ def save_dfu(ih):
+     :param ih:  intelhex object
+     """
+     if args.verbose:
+-        print "Saving %s..." % args.target
+-        print "  Device ID: 0x%04x:0x%04x" % (args.vid, args.pid)
+-        print "  Target name: %s" % args.target_name
++        print("Saving %s..." % args.target)
++        print("  Device ID: 0x%04x:0x%04x" % (args.vid, args.pid))
++        print("  Target name: %s" % args.target_name)
+ 
+     # Image element
+     #
+@@ -119,7 +119,7 @@ def save_dfu(ih):
+         open(args.target, "wb").write(data)
+ 
+     except Exception, e:
+-        print e
++        print(e)
+         exit(1)
+ 
+ 
+@@ -187,13 +187,13 @@ if args.target == None:
+ 
+ if args.format == "bin":
+     if args.start_addr == None:
+-        print "option --start required for binary files"
++        print("option --start required for binary files")
+         exit(1)
+ 
+     args.start_addr = int(args.start_addr, 0)
+ else:
+     if args.start_addr != None:
+-        print "option --start not allowed for hex files"
++        print("option --start not allowed for hex files")
+         exit(1)
+ 
+ 
+diff --git a/stm32/support/intelhex/__init__.py b/stm32/support/intelhex/__init__.py
+index 068036d2..2430a101 100644
+--- a/stm32/support/intelhex/__init__.py
++++ b/stm32/support/intelhex/__init__.py
+@@ -319,12 +319,12 @@ class IntelHex(object):
+         @return         array of unsigned char data.
+         '''
+         if not isinstance(pad, _DeprecatedParam):
+-            print "IntelHex.tobinarray: 'pad' parameter is deprecated."
++            print("IntelHex.tobinarray: 'pad' parameter is deprecated.")
+             if pad is not None:
+-                print "Please, use IntelHex.padding attribute instead."
++                print("Please, use IntelHex.padding attribute instead.")
+             else:
+-                print "Please, don't pass it explicitly."
+-                print "Use syntax like this: ih.tobinarray(start=xxx, end=yyy, size=zzz)"
++                print("Please, don't pass it explicitly.")
++                print("Use syntax like this: ih.tobinarray(start=xxx, end=yyy, size=zzz)")
+         else:
+             pad = None
+         return self._tobinarray_really(start, end, pad, size)
+@@ -359,12 +359,12 @@ class IntelHex(object):
+         @return         string of binary data.
+         '''
+         if not isinstance(pad, _DeprecatedParam):
+-            print "IntelHex.tobinstr: 'pad' parameter is deprecated."
++            print("IntelHex.tobinstr: 'pad' parameter is deprecated.")
+             if pad is not None:
+-                print "Please, use IntelHex.padding attribute instead."
++                print("Please, use IntelHex.padding attribute instead.")
+             else:
+-                print "Please, don't pass it explicitly."
+-                print "Use syntax like this: ih.tobinstr(start=xxx, end=yyy, size=zzz)"
++                print("Please, don't pass it explicitly.")
++                print("Use syntax like this: ih.tobinstr(start=xxx, end=yyy, size=zzz)")
+         else:
+             pad = None
+         return self._tobinstr_really(start, end, pad, size)
+@@ -384,12 +384,12 @@ class IntelHex(object):
+         @param  size    size of the block, used with start or end parameter.
+         '''
+         if not isinstance(pad, _DeprecatedParam):
+-            print "IntelHex.tobinfile: 'pad' parameter is deprecated."
++            print("IntelHex.tobinfile: 'pad' parameter is deprecated.")
+             if pad is not None:
+-                print "Please, use IntelHex.padding attribute instead."
++                print("Please, use IntelHex.padding attribute instead.")
+             else:
+-                print "Please, don't pass it explicitly."
+-                print "Use syntax like this: ih.tobinfile(start=xxx, end=yyy, size=zzz)"
++                print("Please, don't pass it explicitly.")
++                print("Use syntax like this: ih.tobinfile(start=xxx, end=yyy, size=zzz)")
+         else:
+             pad = None
+         if getattr(fobj, "write", None) is None:
+-- 
+2.30.2
+

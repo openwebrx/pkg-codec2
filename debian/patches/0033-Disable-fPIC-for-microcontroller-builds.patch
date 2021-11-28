@@ -1,0 +1,25 @@
+From e15e591f5d369e680bbfd99206b377941177b514 Mon Sep 17 00:00:00 2001
+From: Mooneer Salem <mooneer@gmail.com>
+Date: Sat, 30 Oct 2021 12:49:37 -0700
+Subject: [PATCH 33/53] Disable -fPIC for microcontroller builds.
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9a8a438c..15c8e65b 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -112,7 +112,7 @@ else()
+ endif()
+ 
+ # -fPIC is implied on MinGW...
+-if(NOT WIN32)
++if((NOT WIN32) AND (NOT MICROCONTROLLER_BUILD))
+     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
+ endif()
+ 
+-- 
+2.30.2
+

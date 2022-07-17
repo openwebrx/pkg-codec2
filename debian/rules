@@ -1,24 +1,29 @@
 #!/usr/bin/make -f
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 %:
 	dh $@ --builddirectory=Build --buildsystem=cmake
 
 override_dh_auto_configure:
 	dh_auto_configure --builddirectory=Build -- \
-	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
-	-DINSTALL_EXAMPLES=TRUE \
-	-DUNITTEST=TRUE
+	-DCMAKE_BUILD_TYPE=RelWithDebInfo
 
 override_dh_auto_build:
+	echo "Initial plain buiild"
 	dh_auto_build --builddirectory=Build
+	echo "lpcnet-build configure step"
 	dh_auto_configure --builddirectory=Build/lpcnet-build --sourcedirectory=lpcnet -- \
+	-DLPCNET_191005_DIR=$(CURDIR)/lpcnet191005 \
 	-DCMAKE_VERBOSE_MAKEFILE=ON -DDISABLE_CPU_OPTIMIZATION=ON -DCODEC2_BUILD_DIR=$(CURDIR)/Build
-	cd Build/lpcnet-build && cmake --build .
-	cd Build && cmake -DLPCNET_BUILD_DIR=lpcnet-build ..
-	cd Build && cmake --build .
+	echo "lpcnet-build build with initial codec2"
+	cmake --build Build/lpcnet-build
+	echo "Reconfigure codec2 build to use lpcnet"
+	cd Build && cmake -DLPCNET_BUILD_DIR=lpcnet-build -DBUILD_STATIC_LIBS=ON -DINSTALL_EXAMPLES=TRUE -DUNITTEST=TRUE ..
+	echo "Final codec2 build"
+	cmake --build Build
 
+# Some tests are known to fail while building packages:
+# - not using resource-intensive valgrind for leakage tests
+# - some octave based tests fail without a full graphical environment
 override_dh_auto_test:
-	- override_dh_auto_test
-
-override_dh_acc:
-	- dh_acc $@
+	- export CML_PATH=$(CURDIR)/cml ; dh_auto_test

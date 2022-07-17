@@ -2,8 +2,8 @@ Source: codec2
 Section: sound
 Priority: optional
 Maintainer: A. Maitland Bottoms <bottoms@debian.org>
-Build-Depends: cmake, debhelper-compat (= 13), libsamplerate0-dev, libspeexdsp-dev
-Standards-Version: 4.5.0
+Build-Depends: cmake, debhelper-compat (= 13), libsamplerate0-dev, libspeexdsp-dev, octave, octave-dev, octave-signal, gnuplot-nox, sox
+Standards-Version: 4.6.1
 Rules-Requires-Root: no
 Homepage: http://rowetel.com/codec2.html
 Vcs-Browser: https://salsa.debian.org/bottoms/pkg-codec2

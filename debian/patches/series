@@ -1,58 +1,7 @@
-0001-source-option-which-somehow-was-lost.patch
-0002-moved-freedv_callback_rx_sym-typedef-and-function-in.patch
-0003-Add-reference-to-reliable_text-in-the-official-FreeD.patch
-0004-w-interleaving.patch
-0005-Add-some-basic-FreeDV-API-usage-to-documentation.patch
-0006-Actually-no-need-to-escape-_-in-code-blocks.patch
-0007-Remove-one-last-unneeded-escape.patch
-0008-Only-override-printf-for-SM1000.patch
-0009-Bring-in-changes-from-mcdermj-codec2-to-resolve-buil.patch
-0010-Isolate-ARM-code-in-OFDM-to-STM32.patch
-0011-Revert-changes-to-ofdm.c-due-to-need-for-faster-ARM-.patch
-0012-Update-required-file-headers-for-FDV_ARM_MATH.patch
-0013-Experiment-improve-perforamance-of-the-BPF-on-ARM-by.patch
-0014-Fix-bugs-and-compile-errors-from-previous-commit.patch
-0015-Slight-optimizations-for-mbest_search-and-mbest_inse.patch
-0016-Precalculate-c-for-OFDM-dft-idft.patch
-0017-Warning-cleanup.patch
-0018-Early-termination-of-error-calculation-if-we-exceed-.patch
-0019-Undo-previous-optimization-attempt-and-cleanup-code.patch
-0020-Revert-Remove-one-last-unneeded-escape.patch
-0021-Revert-Actually-no-need-to-escape-_-in-code-blocks.patch
-0022-Revert-Add-some-basic-FreeDV-API-usage-to-documentat.patch
-0023-Add-table-explaining-the-demo-programs.patch
-0024-Add-sample-rate-format-info.patch
-0025-Reduce-the-number-of-required-FP-multiplications-in-.patch
-0026-Use-non-in-place-FFT-for-dft_speech.patch
-0027-Revert-Use-non-in-place-FFT-for-dft_speech.patch
-0028-re-arranged-and-edited-README_freedv.md-added-some-s.patch
-0029-Experiment-have-nlp-use-fftr-instead-of-fft.patch
-0030-Minor-optimizations-on-the-RX-side.patch
-0031-Revert-Revert-Use-non-in-place-FFT-for-dft_speech.patch
-0032-Reverts-all-changes-past-2ab504b.patch
-0033-Disable-fPIC-for-microcontroller-builds.patch
-0034-reduced-SPARE_RAM-in-order-to-get-tst_api_demod_700D.patch
-# 0035-initial-clean-up-of-unused-stm32-tests-building-OK.patch
-# 0036-rm-ed-some-more-unused-stm32-source-files-building-O.patch
-# 0037-cleaned-up-a-little.patch
-0038-Remove-unneeded-STM32-specific-code.patch
-0039-Resolve-uninitialized-value-compile-error.patch
-0040-iRemove-Compiler-warnings.patch
-0041-Force-use-of-Python-3-for-all-scripts.patch
-0042-Fix-hex2dfu-syntax-errors.patch
-0043-Update-fsk_get_test_bits.c.patch
-0044-Update-fsk_put_test_bits.c.patch
-0045-Use-malloc-versus-alloca-in-fsk-utilities.patch
-0046-Fix-Python-3-exception-errors.patch
-0047-Update-test_700c_eq.sh.patch
-0048-Additional-changes-to-make-stm32-ctests-pass.patch
-0049-Change-alloc-to-malloc-free-in-fsk.c.patch
-0050-Add-documentation-for-MICROCONTROLLER_BUILD.patch
-0051-Escape-some-underscores-from-previous-commit.patch
-0052-added-explanation-for-MICROCONTROLLER_BUILD.patch
-0053-Add-explanations-of-__REAL__-and-FDV_ARM_MATH.patch
-# Move-allocation-pointers-to-ofdm-struct
-fsk_fft_api
-# modern-cmake-targets
+update-cmake
+# cmake-shared-and-static-targets
+fsk-fft-api
 debian-source-package
 install-executables
+# install-executables-static-shared
+debian-source-cml

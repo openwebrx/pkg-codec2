@@ -1,4 +1,13 @@
 version=4
 opts="filenamemangle=s%(?:.*?)?v?(\d[\d.]*)\.tar\.gz%codec2_$1.orig.tar.gz%" \
- https://github.com/drowe67/codec2/tags \
+ https://github.com/drowe67/codec2/releases/ \
  (?:.*?/)?v?(\d[\d.]*)\.tar\.gz debian uupdate
+opts="component=cml, mode=git, pgpmode=none" \
+ https://github.com/drowe67/cml \
+ HEAD ignore
+opts="component=lpcnet, filenamemangle=s%(?:.*?)?v?(\d[\d.]*)\.tar\.gz%lpcnet_$1.orig.tar.gz%" \
+ https://github.com/drowe67/LPCNet/releases/ \
+ (?:.*?/)?v?(\d[\d.]*)\.tar\.gz ignore uupdate
+opts="component=lpcnet191005" \
+ https://rowetel.com/downloads/deep/ \
+ lpcnet_191005_v@ANY_VERSION@@ARCHIVE_EXT@ ignore uupdate

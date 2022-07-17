@@ -1,0 +1,18 @@
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -486,3 +486,15 @@
+ 
+ add_executable(ldpc_dec ldpc_dec.c)
+ target_link_libraries(ldpc_dec codec2)
++
++install(TARGETS
++    c2enc
++    c2dec
++    fdmdv_get_test_bits
++    fdmdv_mod fdmdv_demod
++    fm_demod
++    fsk_mod
++    fdmdv_put_test_bits
++    insert_errors
++    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
++)

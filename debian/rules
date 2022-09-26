@@ -1,6 +1,12 @@
 #!/usr/bin/make -f
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+  RUN_UNITTEST := TRUE
+else
+  RUN_UNITTEST := FALSE
+endif
+
 %:
 	dh $@ --builddirectory=Build --buildsystem=cmake
 
@@ -18,7 +24,7 @@ override_dh_auto_build:
 	echo "lpcnet-build build with initial codec2"
 	cmake --build Build/lpcnet-build
 	echo "Reconfigure codec2 build to use lpcnet"
-	cd Build && cmake -DLPCNET_BUILD_DIR=lpcnet-build -DBUILD_STATIC_LIBS=ON -DINSTALL_EXAMPLES=TRUE -DUNITTEST=TRUE ..
+	cd Build && cmake -DLPCNET_BUILD_DIR=lpcnet-build -DBUILD_STATIC_LIBS=ON -DINSTALL_EXAMPLES=TRUE -DUNITTEST=$(RUN_UNITTEST) ..
 	echo "Final codec2 build"
 	cmake --build Build
 

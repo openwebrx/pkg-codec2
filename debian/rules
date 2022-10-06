@@ -33,3 +33,11 @@ override_dh_auto_build:
 # - some octave based tests fail without a full graphical environment
 override_dh_auto_test:
 	- export CML_PATH=$(CURDIR)/cml ; dh_auto_test
+
+override_dh_auto_install:
+	dh_auto_install
+	# the test builds some test artifacts we don't want to ship
+	find $(CURDIR)/debian/tmp/usr/share/codec2/octave \
+		-name "*_out.txt" -delete -o -name "*.raw" -delete -o \
+		-name "*.iqfloat" -delete -o -name "*vec" -delete -o \
+		-name "*_log.txt" -delete

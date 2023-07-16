@@ -1,6 +1,12 @@
 #!/usr/bin/make -f
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+  RUN_UNITTEST := TRUE
+else
+  RUN_UNITTEST := FALSE
+endif
+
 %:
 	dh $@ --builddirectory=Build --buildsystem=cmake
 
@@ -18,7 +24,7 @@ override_dh_auto_build:
 	echo "lpcnet-build build with initial codec2"
 	cmake --build Build/lpcnet-build
 	echo "Reconfigure codec2 build to use lpcnet"
-	cd Build && cmake -DLPCNET_BUILD_DIR=lpcnet-build -DBUILD_STATIC_LIBS=ON -DINSTALL_EXAMPLES=TRUE -DUNITTEST=TRUE ..
+	cd Build && cmake -DLPCNET_BUILD_DIR=lpcnet-build -DBUILD_STATIC_LIBS=ON -DINSTALL_EXAMPLES=TRUE -DUNITTEST=$(RUN_UNITTEST) ..
 	echo "Final codec2 build"
 	cmake --build Build
 
@@ -27,3 +33,11 @@ override_dh_auto_build:
 # - some octave based tests fail without a full graphical environment
 override_dh_auto_test:
 	- export CML_PATH=$(CURDIR)/cml ; dh_auto_test
+
+override_dh_auto_install:
+	dh_auto_install
+	# the test builds some test artifacts we don't want to ship
+	find $(CURDIR)/debian/tmp/usr/share/codec2/octave \
+		-name "*_out.txt" -delete -o -name "*.raw" -delete -o \
+		-name "*.iqfloat" -delete -o -name "*vec" -delete -o \
+		-name "*_log.txt" -delete

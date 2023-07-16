@@ -2,7 +2,7 @@ Source: codec2
 Section: sound
 Priority: optional
 Maintainer: A. Maitland Bottoms <bottoms@debian.org>
-Build-Depends: cmake, debhelper-compat (= 13), libsamplerate0-dev, libspeexdsp-dev, octave, octave-dev, octave-signal, gnuplot-nox, sox
+Build-Depends: cmake, debhelper-compat (= 13), libsamplerate0-dev, libspeexdsp-dev, octave <!nocheck>, octave-dev <!nocheck>, octave-signal <!nocheck>, gnuplot-nox <!nocheck>, sox <!nocheck>
 Standards-Version: 4.6.1
 Rules-Requires-Root: no
 Homepage: http://rowetel.com/codec2.html

@@ -14,8 +14,8 @@ Files: cmake/* doc/* demo/* misc/* lpcnet191005/*
  README_fsk.md README.md codec2.pc.in CMakeLists.txt
  README_data.md README_fdmdv.md README_ofdm.md
  README_cohpsk.md README_freedv.md .gitignore
- .github/workflows/cmake.yml
-Copyright: Copyright 2007-2019 David Rowe
+ .github/workflows/cmake.yml .github/workflows/cmake-sm1000.yml
+Copyright: Copyright 2007-2023 David Rowe
 License: LGPL-2.1
 
 Files: src/golay23.c

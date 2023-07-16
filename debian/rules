@@ -11,21 +11,23 @@ endif
 	dh $@ --builddirectory=Build --buildsystem=cmake
 
 override_dh_auto_configure:
+	dh_auto_configure --builddirectory=Build/lpcnet-build --sourcedirectory=lpcnet -- \
+	-DCMAKE_VERBOSE_MAKEFILE=ON -DDISABLE_CPU_OPTIMIZATION=ON \
+	-DLPCNET_191005_DIR=$(CURDIR)/lpcnet191005
+	cmake --build Build/lpcnet-build
 	dh_auto_configure --builddirectory=Build -- \
+	-DLPCNET_BUILD_DIR=$(CURDIR)/Build/lpcnet-build \
+	-DBUILD_STATIC_LIBS=ON \
+	-DINSTALL_EXAMPLES=TRUE \
+	-DUNITTEST=$(RUN_UNITTEST) \
 	-DCMAKE_BUILD_TYPE=RelWithDebInfo
+	dh_auto_configure --buildsystem=makefile \
+	--builddirectory=$(CURDIR)/Build/cml-build --sourcedirectory=$(CURDIR)/cml
 
 override_dh_auto_build:
-	echo "Initial plain buiild"
-	dh_auto_build --builddirectory=Build
-	echo "lpcnet-build configure step"
-	dh_auto_configure --builddirectory=Build/lpcnet-build --sourcedirectory=lpcnet -- \
-	-DLPCNET_191005_DIR=$(CURDIR)/lpcnet191005 \
-	-DCMAKE_VERBOSE_MAKEFILE=ON -DDISABLE_CPU_OPTIMIZATION=ON -DCODEC2_BUILD_DIR=$(CURDIR)/Build
-	echo "lpcnet-build build with initial codec2"
+	echo "lpcnet-build"
 	cmake --build Build/lpcnet-build
-	echo "Reconfigure codec2 build to use lpcnet"
-	cd Build && cmake -DLPCNET_BUILD_DIR=lpcnet-build -DBUILD_STATIC_LIBS=ON -DINSTALL_EXAMPLES=TRUE -DUNITTEST=$(RUN_UNITTEST) ..
-	echo "Final codec2 build"
+	echo "codec2 build to use lpcnet"
 	cmake --build Build
 
 # Some tests are known to fail while building packages:

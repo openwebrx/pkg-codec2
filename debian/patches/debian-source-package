@@ -5,7 +5,7 @@ Forwarded: not-needed
 
 --- a/lpcnet/CMakeLists.txt
 +++ b/lpcnet/CMakeLists.txt
-@@ -79,7 +79,7 @@
+@@ -85,7 +85,7 @@
  endif()
  
  # Set default flags
@@ -14,8 +14,8 @@ Forwarded: not-needed
  
  # Arch specific stuff here
  message(STATUS "Host system arch is: ${CMAKE_SYSTEM_PROCESSOR}")
-@@ -139,6 +139,9 @@
-     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mfpu=neon -march=armv8-a -mtune=cortex-a53")
+@@ -164,6 +164,9 @@
+     set(LPCNET_C_PROC_FLAGS -mfpu=neon -march=armv8-a -mtune=cortex-a53)
  endif()
  
 +if(LPCNET_191005_DIR)
@@ -24,22 +24,22 @@ Forwarded: not-needed
  # grab latest NN model (or substitute your own)
  set(LPCNET_ROOT http://rowetel.com/downloads/deep/)
  set(LPCNET_FILE lpcnet_191005_v1.0.tgz)
-@@ -170,6 +173,7 @@
+@@ -195,6 +198,7 @@
          FetchContent_Populate(lpcnet)
      endif()
  endif()
 +endif()
  
- # Find codec2
- if(CODEC2_BUILD_DIR)
+ add_subdirectory(src)
+ 
 --- a/lpcnet/src/CMakeLists.txt
 +++ b/lpcnet/src/CMakeLists.txt
-@@ -19,7 +19,7 @@
-     ${lpcnet_SOURCE_DIR}/nnet_data.c
- )
+@@ -40,7 +40,7 @@
+ endforeach()
+ endif(LPCNET_C_PROC_FLAGS)
  
--add_library(lpcnetfreedv SHARED ${lpcnet_freedv_srcs})
-+add_library(lpcnetfreedv STATIC ${lpcnet_freedv_srcs})
- target_link_libraries(lpcnetfreedv codec2)
+-add_library(lpcnetfreedv SHARED ${lpcnet_freedv_srcs} ${codec2_import_srcs})
++add_library(lpcnetfreedv STATIC ${lpcnet_freedv_srcs} ${codec2_import_srcs})
+ 
  set_target_properties(lpcnetfreedv PROPERTIES
      PUBLIC_HEADER lpcnet_freedv.h

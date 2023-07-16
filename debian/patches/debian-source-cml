@@ -10,23 +10,19 @@ than let CMake fetch it from the git repository.
  unittest/CMakeLists.txt | 6 +++---
  2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 998af5dd..4fd313d1 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -1241,6 +1241,6 @@ endif(NOT APPLE)
-         test_OFDM_modem_datac3_octave
+@@ -1416,6 +1416,6 @@
          test_fsk_lib_4fsk_ldpc
+         test_OFDM_modem_datac0_compression
          PROPERTIES
 -        ENVIRONMENT "CML_PATH=${CMAKE_CURRENT_BINARY_DIR}/cml"
 +        ENVIRONMENT "CML_PATH=${PROJECT_SOURCE_DIR}/cml"
      )
  endif(UNITTEST)
-diff --git a/unittest/CMakeLists.txt b/unittest/CMakeLists.txt
-index 3186d346..ebde38f2 100644
 --- a/unittest/CMakeLists.txt
 +++ b/unittest/CMakeLists.txt
-@@ -102,13 +102,13 @@ find_program(OCTAVE_CMD octave-cli REQUIRED)
+@@ -104,13 +104,13 @@
  message("Octave command: ${OCTAVE_CMD}")
  
  include(ExternalProject)
@@ -43,6 +39,3 @@ index 3186d346..ebde38f2 100644
     INSTALL_COMMAND true # No installation required
  )
  
--- 
-2.35.1
-

@@ -8,11 +8,9 @@ So that packages can include these codec2 utilities.
  src/CMakeLists.txt | 12 ++++++++++++
  1 file changed, 12 insertions(+)
 
-diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index abc76cd5..dfe182ea 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
-@@ -404,3 +404,15 @@ install(TARGETS codec2 EXPORT codec2-config
+@@ -399,3 +399,14 @@
      RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
      PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/codec2 COMPONENT dev
  )
@@ -25,9 +23,5 @@ index abc76cd5..dfe182ea 100644
 +    fm_demod
 +    fsk_mod
 +    fdmdv_put_test_bits
-+    insert_errors
 +    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 +)
--- 
-2.35.1
-

@@ -9,11 +9,9 @@ install fmfsk.h and use kiss_fft.h for fmfsk.c
  src/fsk.h          | 2 +-
  2 files changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index cb0990bc..abc76cd5 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
-@@ -221,6 +221,7 @@ set(CODEC2_PUBLIC_HEADERS
+@@ -222,6 +222,7 @@
      codec2_cohpsk.h
      codec2_fm.h
      codec2_ofdm.h
@@ -21,8 +19,6 @@ index cb0990bc..abc76cd5 100644
      fsk.h
      codec2_fifo.h
      comp.h
-diff --git a/src/fsk.h b/src/fsk.h
-index 046fa7a3..38bafb82 100644
 --- a/src/fsk.h
 +++ b/src/fsk.h
 @@ -31,7 +31,7 @@
@@ -34,6 +30,3 @@ index 046fa7a3..38bafb82 100644
  #include "modem_stats.h"
  
  #define MODE_2FSK 2
--- 
-2.35.1
-

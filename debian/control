@@ -20,7 +20,7 @@ Description: command line tools for handling Codec2 data
 
 Package: codec2-examples
 Architecture: all
-Depends: ${misc:Depends}, python3
+Depends: ${misc:Depends}, python3:any
 Suggests: octave
 Description: Codec2 sample data and examples
  Codec2 is an audio codec especially designed for compressing voice at
@@ -48,6 +48,7 @@ Section: libdevel
 Pre-Depends: ${misc:Pre-Depends}
 Depends: libcodec2-1.0 (= ${binary:Version}), ${misc:Depends}
 Suggests: pkg-config
+Multi-Arch: same
 Description: Codec2 library development files
  Codec2 is an audio codec especially designed for compressing voice at
  very low bit-rates for applications such as digital voice radio.

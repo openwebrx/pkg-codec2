@@ -1,6 +1,6 @@
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -129,7 +129,9 @@
+@@ -116,7 +116,9 @@
  # Default options
  #
  option(BUILD_SHARED_LIBS
@@ -13,7 +13,7 @@
  if(INSTALL_EXAMPLES)
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
-@@ -241,6 +241,87 @@
+@@ -243,6 +243,87 @@
  # Patch level version bumps should not change API/ABI.
  set(SOVERSION "${CODEC2_VERSION_MAJOR}.${CODEC2_VERSION_MINOR}")
  message(STATUS "codec2 version: ${CODEC2_VERSION}")
@@ -101,7 +101,7 @@
  add_library(codec2 ${CODEC2_SRCS})
  if(UNIX)
      target_link_libraries(codec2 PUBLIC m)
-@@ -263,7 +344,7 @@
+@@ -264,7 +345,7 @@
  )
  
  # Export config for import from full install
@@ -110,7 +110,7 @@
      DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/codec2
  )
  
-@@ -272,6 +353,14 @@
+@@ -273,6 +354,14 @@
      FILE ${CMAKE_BINARY_DIR}/codec2.cmake
  )
  
@@ -125,14 +125,3 @@
  add_executable(c2enc c2enc.c)
  target_link_libraries(c2enc codec2)
  
-@@ -396,10 +485,3 @@
- 
- add_executable(ldpc_dec ldpc_dec.c)
- target_link_libraries(ldpc_dec codec2)
--
--install(TARGETS codec2 EXPORT codec2-config
--    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT lib
--    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT lib
--    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
--    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/codec2 COMPONENT dev
--)

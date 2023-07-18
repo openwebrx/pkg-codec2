@@ -1,3 +1,9 @@
+codec2 (1.1.1-6) unstable; urgency=medium
+
+  * install lpcnet_freedv.h header (Closes: #1041259)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Tue, 18 Jul 2023 16:01:14 -0400
+
 codec2 (1.1.1-5) unstable; urgency=medium
 
   * Apply hints suggested by the multi-arch hinter.

@@ -1,8 +1,6 @@
-# update-cmake
 # cmake-shared-and-static-targets
 fsk-fft-api
 debian-source-package
 install-executables
-# install-executables-static-shared
 debian-source-cml
 lpcnet-check-c-compiler-flag

@@ -6,6 +6,7 @@ ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 else
   RUN_UNITTEST := FALSE
 endif
+#	-DUNITTEST=$(RUN_UNITTEST) \
 
 %:
 	dh $@ --builddirectory=Build --buildsystem=cmake
@@ -19,7 +20,7 @@ override_dh_auto_configure:
 	-DLPCNET_BUILD_DIR=$(CURDIR)/Build/lpcnet-build \
 	-DBUILD_STATIC_LIBS=ON \
 	-DINSTALL_EXAMPLES=TRUE \
-	-DUNITTEST=$(RUN_UNITTEST) \
+	-DUNITTEST=FALSE \
 	-DCMAKE_BUILD_TYPE=RelWithDebInfo
 	dh_auto_configure --buildsystem=makefile \
 	--builddirectory=$(CURDIR)/Build/cml-build --sourcedirectory=$(CURDIR)/cml

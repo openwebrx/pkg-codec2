@@ -1,3 +1,9 @@
+codec2 (1.1.1-7) unstable; urgency=medium
+
+  * Temporarily remove octave build-depends (unavailable on most archs)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Tue, 18 Jul 2023 21:18:57 -0400
+
 codec2 (1.1.1-6) unstable; urgency=medium
 
   * install lpcnet_freedv.h header (Closes: #1041259)

@@ -1,0 +1,7 @@
+usr/bin/c2dec
+usr/bin/c2enc
+usr/bin/fdmdv_demod
+usr/bin/fdmdv_get_test_bits
+usr/bin/fdmdv_mod
+usr/bin/fdmdv_put_test_bits
+usr/bin/fsk_mod

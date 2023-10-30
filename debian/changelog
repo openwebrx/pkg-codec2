@@ -1,3 +1,9 @@
+codec2 (1.2.0-2+owrx1) UNRELEASE; urgency=low
+
+  * Add freedv_rx binary to be installed
+
+ -- Jakob Ketterl <jakob.ketterl@gmx.de>  Mon, 30 Oct 2023 13:02:00 +0000
+
 codec2 (1.2.0-2) unstable; urgency=medium
 
   * New upstream to unstable

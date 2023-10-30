@@ -1,0 +1,14 @@
+Description: Install the freedv_rx binary
+Author: Jakob Ketterl <jakob.ketterl@gmx.de>
+
+* This patch adds freedv_rx as a binary to be installed. This allows
+  decoding of freedv modes on the command-line.
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -395,5 +395,6 @@
+     fdmdv_mod fdmdv_demod
+     fsk_mod
+     fdmdv_put_test_bits
++    freedv_rx
+     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+ )
